@@ -1,6 +1,7 @@
-package com.example.android.bluetoothlegatt.domain.oneM2MList.AE;
+package com.example.android.bluetoothlegatt.domain.oneM2MList.Container;
 
 import com.example.android.bluetoothlegatt.domain.URLInfomation;
+import com.example.android.bluetoothlegatt.domain.oneM2MList.AE.AE_Root;
 
 import java.util.HashMap;
 
@@ -8,27 +9,27 @@ import java.util.HashMap;
  * Created by Blossom on 2016-11-03.
  */
 
-public class AE_Delete implements AE_Root {
+public class Container_Delete implements Container_Root {
 
     private String title;
     private String operation = "DELETE";
-    private HashMap<String, String> aeRetrieveHeaderList;
+    private HashMap<String, String> containerCreateHeaderList;
     private String url;
 
     private String KEY_HEADER_ACCEPT = "Accept";
     private String KEY_HEADER_X_M2M_RI = "X-M2M-RI";
     private String KEY_HEADER_X_M2M_ORIGIN = "X-M2M-Origin";
 
-    public AE_Delete() {
+    public Container_Delete() {
         this.title = "AE 리소스 삭제";
 
-        this.aeRetrieveHeaderList = new HashMap<String, String>();
+        this.containerCreateHeaderList = new HashMap<String, String>();
 
-        this.aeRetrieveHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
-        this.aeRetrieveHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
-        this.aeRetrieveHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
+        this.containerCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
+        this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
+        this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
 
-        url = URLInfomation.serverURL + "/" + URLInfomation.AEName;
+        url = URLInfomation.serverURL + "/" + URLInfomation.AEName + "/" + URLInfomation.containerName;
     }
 
     @Override
@@ -39,7 +40,7 @@ public class AE_Delete implements AE_Root {
     public String getOperation() { return operation; }
 
     public HashMap<String, String> getHeaderList() {
-        return aeRetrieveHeaderList;
+        return containerCreateHeaderList;
     }
 
     public String getXmlBody() {

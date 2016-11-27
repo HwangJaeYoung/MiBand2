@@ -91,6 +91,9 @@ public class DeviceControlActivity extends Activity {
     private Button cntRetrieve;
     private Button cinRetrieve;
 
+    private Button aeDelete;
+    private Button cntDelete;
+    private Button cinDelete;
 
     public DeviceControlActivity() {
         handler = new Handler();
@@ -260,9 +263,16 @@ public class DeviceControlActivity extends Activity {
        cntRetrieve = (Button)findViewById(R.id.cnt_retrieve);
        cinRetrieve = (Button)findViewById(R.id.cin_retrieve);
 
+        aeDelete = (Button)findViewById(R.id.ae_delete);
+        cntDelete = (Button)findViewById(R.id.cnt_delete);
+        cinDelete = (Button)findViewById(R.id.cin_delete);
+
         // Network Listener Setting
         ClickEvent clickEvent = new ClickEvent(getApplicationContext(), XMLResponseListener, JSONResponseListener,
-                aeRegistration, cntRegistration, cinRegistration, aeRetrieve, cntRetrieve, cinRetrieve);
+                aeRegistration, cntRegistration, cinRegistration,
+                aeRetrieve, cntRetrieve, cinRetrieve,
+                aeDelete, cntDelete, cinDelete);
+
         clickEvent.setListener( );
 
         toggleButton.setOnClickListener(new View.OnClickListener() {
@@ -277,6 +287,10 @@ public class DeviceControlActivity extends Activity {
                     cntRetrieve.setVisibility(View.INVISIBLE);
                     cinRetrieve.setVisibility(View.INVISIBLE);
 
+                    aeDelete.setVisibility(View.INVISIBLE);
+                    cntDelete.setVisibility(View.INVISIBLE);
+                    cinDelete.setVisibility(View.INVISIBLE);
+
                 } else {
                     aeRegistration.setVisibility(View.VISIBLE);
                     cntRegistration.setVisibility(View.VISIBLE);
@@ -285,6 +299,10 @@ public class DeviceControlActivity extends Activity {
                     aeRetrieve.setVisibility(View.VISIBLE);
                     cntRetrieve.setVisibility(View.VISIBLE);
                     cinRetrieve.setVisibility(View.VISIBLE);
+
+                    aeDelete.setVisibility(View.VISIBLE);
+                    cntDelete.setVisibility(View.VISIBLE);
+                    cinDelete.setVisibility(View.VISIBLE);
                 }
             }
         });

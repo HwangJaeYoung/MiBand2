@@ -1,6 +1,7 @@
-package com.example.android.bluetoothlegatt.domain.oneM2MList.AE;
+package com.example.android.bluetoothlegatt.domain.oneM2MList.Container;
 
 import com.example.android.bluetoothlegatt.domain.URLInfomation;
+import com.example.android.bluetoothlegatt.domain.oneM2MList.AE.AE_Root;
 
 import java.util.HashMap;
 
@@ -8,7 +9,7 @@ import java.util.HashMap;
  * Created by Blossom on 2016-11-03.
  */
 
-public class AE_Create implements AE_Root {
+public class Container_Create implements Container_Root {
 
     private String title;
     private String operation = "POST";
@@ -16,26 +17,25 @@ public class AE_Create implements AE_Root {
     private String jsonBody;
     private String url;
 
-    private HashMap<String, String> aeCreateHeaderList;
+    private HashMap<String, String> containerCreateHeaderList;
 
     private String KEY_HEADER_ACCEPT = "Accept";
     private String KEY_HEADER_X_M2M_RI = "X-M2M-RI";
     private String KEY_HEADER_X_M2M_ORIGIN = "X-M2M-Origin";
     private String KEY_HEADER_CONTENT_TYPE = "Content-Type";
 
-    public AE_Create() {
-        this.aeCreateHeaderList = new HashMap<String, String>();
+    public Container_Create() {
+        this.containerCreateHeaderList = new HashMap<String, String>();
 
-        this.aeCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
-        this.aeCreateHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
-        this.aeCreateHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
-        this.aeCreateHeaderList.put(KEY_HEADER_CONTENT_TYPE, "application/vnd.onem2m-res+xml; ty=2");
+        this.containerCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
+        this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
+        this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
+        this.containerCreateHeaderList.put(KEY_HEADER_CONTENT_TYPE, "application/vnd.onem2m-res+xml; ty=3");
+
 
         xmlBody = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-                "<m2m:ae xmlns:m2m=\"http://www.onem2m.org/xml/protocols\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" rn = \"" + URLInfomation.AEName + "\">\n" +
-                "    <api>0.2.481.2.0001.001.000111</api>\n" +
-                "    <rr>false</rr>" +
-                "</m2m:ae>";
+                "<m2m:cnt xmlns:m2m=\"http://www.onem2m.org/xml/protocols\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" rn = \"" + URLInfomation.containerName + "\">\n" +
+                "</m2m:cnt>";
 
         jsonBody = "{\n" +
                 "    \"m2m:ae\": {\n" +
@@ -44,7 +44,7 @@ public class AE_Create implements AE_Root {
                 "    }\n" +
                 "}";
 
-        url = URLInfomation.serverURL;
+        url = URLInfomation.serverURL + "/" + URLInfomation.AEName;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class AE_Create implements AE_Root {
     public String getOperation() { return operation; }
 
     public HashMap<String, String> getHeaderList() {
-        return aeCreateHeaderList;
+        return containerCreateHeaderList;
     }
 
     public String getXmlBody() {

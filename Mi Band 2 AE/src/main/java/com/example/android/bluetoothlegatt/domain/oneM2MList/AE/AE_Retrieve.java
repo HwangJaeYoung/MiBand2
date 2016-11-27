@@ -1,5 +1,7 @@
 package com.example.android.bluetoothlegatt.domain.oneM2MList.AE;
 
+import com.example.android.bluetoothlegatt.domain.URLInfomation;
+
 import java.util.HashMap;
 
 /**
@@ -24,7 +26,7 @@ public class AE_Retrieve implements AE_Root {
         this.aeRetrieveHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
         this.aeRetrieveHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
 
-        url = "http://203.253.128.151:7579/mobius-yt/MiBand2";
+        url = URLInfomation.serverURL + "/" + URLInfomation.AEName;
     }
 
     @Override

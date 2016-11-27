@@ -1,0 +1,48 @@
+package com.example.android.bluetoothlegatt.domain.oneM2MList.Container;
+
+import com.example.android.bluetoothlegatt.domain.URLInfomation;
+
+import java.util.HashMap;
+
+/**
+ * Created by Blossom on 2016-11-03.
+ */
+
+public class Container_Retrieve implements Container_Root {
+
+    private String title;
+    private String operation = "GET";
+    private HashMap<String, String> containerCreateHeaderList;
+    private String url;
+
+    private String KEY_HEADER_ACCEPT = "Accept";
+    private String KEY_HEADER_X_M2M_RI = "X-M2M-RI";
+    private String KEY_HEADER_X_M2M_ORIGIN = "X-M2M-Origin";
+
+    public Container_Retrieve() {
+        this.containerCreateHeaderList = new HashMap<String, String>();
+
+        this.containerCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
+        this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
+        this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
+
+        url = URLInfomation.serverURL + "/" + URLInfomation.AEName + "/" + URLInfomation.containerName;
+    }
+
+    @Override
+    public String getRequestURL() {
+        return url;
+    }
+
+    public String getOperation() { return operation; }
+
+    public HashMap<String, String> getHeaderList() { return containerCreateHeaderList; }
+
+    public String getXmlBody() {
+        return null;
+    }
+
+    public String getJsonBody() {
+        return null;
+    }
+}

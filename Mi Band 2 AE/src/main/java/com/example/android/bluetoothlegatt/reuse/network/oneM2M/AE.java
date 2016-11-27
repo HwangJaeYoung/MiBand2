@@ -21,9 +21,6 @@ import java.util.Iterator;
 
 public class AE {
 
-    // Setting url manually
-
-
     private Context context;
     private AE_Root aeRoot;
     private HttpRequester.NetworkResponseListenerXML XMLResponseListener;

@@ -85,6 +85,8 @@
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.65"
+            android:layout_margin="5dp"
+            android:background="#FF86C890"
 
             />
         <Button
@@ -92,12 +94,17 @@
             android:id="@+id/cnt_registration"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:background="#FFD6B977"
+            android:layout_margin="5dp"
+
             />
         <Button
             android:text="CIN REG"
             android:id="@+id/cin_registration"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:background="#b6968d"
+            android:layout_margin="5dp"
             />
 
     </LinearLayout>
@@ -113,6 +120,8 @@
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.65"
+            android:layout_margin="5dp"
+            android:background="#FF86C890"
 
             />
         <Button
@@ -120,12 +129,50 @@
             android:id="@+id/cnt_retrieve"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:background="#FFD6B977"
+            android:layout_margin="5dp"
             />
         <Button
             android:text="CIN RET"
             android:id="@+id/cin_retrieve"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:background="#b6968d"
+            android:layout_margin="5dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:weightSum="1">
+        <Button
+            android:text="AE DEL"
+            android:id="@+id/ae_delete"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.65"
+            android:layout_margin="5dp"
+            android:background="#FF86C890"
+
+            />
+        <Button
+            android:text="CNT DEL"
+            android:id="@+id/cnt_delete"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:background="#FFD6B977"
+            android:layout_margin="5dp"
+            />
+        <Button
+            android:text="CIN DEL"
+            android:id="@+id/cin_delete"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:background="#b6968d"
+            android:layout_margin="5dp"
             />
 
     </LinearLayout>
