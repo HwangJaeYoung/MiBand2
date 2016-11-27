@@ -478,8 +478,8 @@ public class DeviceControlActivity extends Activity {
             mDataField.setText(""+ i);
             walkingStepValue = "" + i;
 
-            ContentInstance contentInstanceRegistration = new ContentInstance(getApplicationContext(), XMLResponseListener, JSONResponseListener, new ContentInstance_Create());
-            contentInstanceRegistration.oneM2MResuest();
+            //ContentInstance contentInstanceRegistration = new ContentInstance(getApplicationContext(), XMLResponseListener, JSONResponseListener, new ContentInstance_Create());
+            //contentInstanceRegistration.oneM2MResuest();
         }
     }
 

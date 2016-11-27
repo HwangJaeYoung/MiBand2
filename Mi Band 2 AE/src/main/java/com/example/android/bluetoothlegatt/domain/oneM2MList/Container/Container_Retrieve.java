@@ -1,6 +1,9 @@
 package com.example.android.bluetoothlegatt.domain.oneM2MList.Container;
 
+import android.content.Context;
+
 import com.example.android.bluetoothlegatt.domain.URLInfomation;
+import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
 
 import java.util.HashMap;
 
@@ -10,7 +13,10 @@ import java.util.HashMap;
 
 public class Container_Retrieve implements Container_Root {
 
-    private String title;
+    private Context context;
+    private HttpRequester.NetworkResponseListenerXML XMLResponseListener;
+    private HttpRequester.NetworkResponseListenerJSON JSONResponseListener;
+
     private String operation = "GET";
     private HashMap<String, String> containerRetrieveHeaderList;
     private String url;

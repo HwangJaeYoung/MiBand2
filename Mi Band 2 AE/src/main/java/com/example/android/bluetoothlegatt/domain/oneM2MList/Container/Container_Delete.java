@@ -1,7 +1,10 @@
 package com.example.android.bluetoothlegatt.domain.oneM2MList.Container;
 
+import android.content.Context;
+
 import com.example.android.bluetoothlegatt.domain.URLInfomation;
 import com.example.android.bluetoothlegatt.domain.oneM2MList.AE.AE_Root;
+import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
 
 import java.util.HashMap;
 
@@ -11,7 +14,10 @@ import java.util.HashMap;
 
 public class Container_Delete implements Container_Root {
 
-    private String title;
+    private Context context;
+    private HttpRequester.NetworkResponseListenerXML XMLResponseListener;
+    private HttpRequester.NetworkResponseListenerJSON JSONResponseListener;
+
     private String operation = "DELETE";
     private HashMap<String, String> containerDeleteHeaderList;
     private String url;
@@ -21,7 +27,6 @@ public class Container_Delete implements Container_Root {
     private String KEY_HEADER_X_M2M_ORIGIN = "X-M2M-Origin";
 
     public Container_Delete() {
-        this.title = "AE 리소스 삭제";
 
         this.containerDeleteHeaderList = new HashMap<String, String>();
 
