@@ -1,7 +1,10 @@
 package com.example.android.bluetoothlegatt.domain.oneM2MList.ContentInstance;
 
+import android.content.Context;
+
 import com.example.android.bluetoothlegatt.DeviceControlActivity;
 import com.example.android.bluetoothlegatt.domain.URLInfomation;
+import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
 
 import java.util.HashMap;
 
@@ -11,7 +14,10 @@ import java.util.HashMap;
 
 public class ContentInstance_Create implements ContentInstance_Root {
 
-    private String title;
+    private Context context;
+    private HttpRequester.NetworkResponseListenerXML XMLResponseListener;
+    private HttpRequester.NetworkResponseListenerJSON JSONResponseListener;
+
     private String operation = "POST";
     private String xmlBody;
     private String jsonBody;
@@ -24,7 +30,12 @@ public class ContentInstance_Create implements ContentInstance_Root {
     private String KEY_HEADER_X_M2M_ORIGIN = "X-M2M-Origin";
     private String KEY_HEADER_CONTENT_TYPE = "Content-Type";
 
-    public ContentInstance_Create() {
+    public ContentInstance_Create(Context context, HttpRequester.NetworkResponseListenerXML XMLResponseListener, HttpRequester.NetworkResponseListenerJSON JSONResponseListener) {
+
+        this.context = context;
+        this.XMLResponseListener = XMLResponseListener;
+        this.JSONResponseListener = JSONResponseListener;
+
         this.contentInstanceCreateHeaderList = new HashMap<String, String>();
 
         this.contentInstanceCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
@@ -65,4 +76,10 @@ public class ContentInstance_Create implements ContentInstance_Root {
     public String getJsonBody() {
         return jsonBody;
     }
+
+    public Context getContext() { return context; }
+
+    public HttpRequester.NetworkResponseListenerXML getXMLResponseListener() { return XMLResponseListener; }
+
+    public HttpRequester.NetworkResponseListenerJSON getJSONResponseListener() { return JSONResponseListener; }
 }

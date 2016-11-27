@@ -163,6 +163,15 @@ public class DeviceScanActivity extends Activity
             case R.id.menu_connect2:
                 Log.i(TAG, "Connect to BLE Peripheral");
                 int position = -1;
+                if(mLeDeviceListAdapter.getCount() == 0){
+                    final Intent intent = new Intent(this, DeviceControlActivity.class);
+                    if (mScanning)
+                    {
+                        mBluetoothAdapter.stopLeScan(mLeScanCallback);
+                        mScanning = false;
+                    }
+                    startActivity(intent);
+                }
                 for(int i=0; i < mLeDeviceListAdapter.getCount(); i++)
                 {
                     BluetoothDevice d = mLeDeviceListAdapter.getDevice(i);

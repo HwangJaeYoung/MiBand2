@@ -1,13 +1,10 @@
 package com.example.android.bluetoothlegatt.reuse.network.oneM2M;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.example.android.bluetoothlegatt.domain.MainHeaderItem;
 import com.example.android.bluetoothlegatt.domain.RequestPrimitive;
-import com.example.android.bluetoothlegatt.domain.oneM2MList.Container.Container_Root;
 import com.example.android.bluetoothlegatt.domain.oneM2MList.ContentInstance.ContentInstance_Root;
-import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
 import com.example.android.bluetoothlegatt.reuse.network.oneM2MRequest;
 
 import org.json.JSONException;
@@ -21,16 +18,10 @@ import java.util.Iterator;
  */
 
 public class ContentInstance {
-    private Context context;
     private ContentInstance_Root contentInstanceRoot;
-    private HttpRequester.NetworkResponseListenerXML XMLResponseListener;
-    private HttpRequester.NetworkResponseListenerJSON JSONResponseListener;
 
-    public ContentInstance(Context context, HttpRequester.NetworkResponseListenerXML XMLResponseListener, HttpRequester.NetworkResponseListenerJSON JSONResponseListener, ContentInstance_Root contentInstanceRoot) {
-        this.context = context;
+    public ContentInstance(ContentInstance_Root contentInstanceRoot) {
         this.contentInstanceRoot = contentInstanceRoot;
-        this.XMLResponseListener = XMLResponseListener;
-        this.JSONResponseListener = JSONResponseListener;
     }
 
     public void oneM2MResuest( ) {
@@ -54,10 +45,10 @@ public class ContentInstance {
         String operation = requestPrimitive.getOperation();
 
         if(accept.equals("application/xml")) {
-            oneM2MRequestor.XML(context, XMLResponseListener, operation, requestPrimitive);
+            oneM2MRequestor.XML(contentInstanceRoot.getContext(), contentInstanceRoot.getXMLResponseListener(), operation, requestPrimitive);
         } else if(accept.equals("application/json")) {
             try {
-                oneM2MRequestor.JSON(context, JSONResponseListener, operation, requestPrimitive);
+                oneM2MRequestor.JSON(contentInstanceRoot.getContext(), contentInstanceRoot.getJSONResponseListener(), operation, requestPrimitive);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

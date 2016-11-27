@@ -1,13 +1,10 @@
 package com.example.android.bluetoothlegatt.reuse.network.oneM2M;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.example.android.bluetoothlegatt.domain.MainHeaderItem;
 import com.example.android.bluetoothlegatt.domain.RequestPrimitive;
-import com.example.android.bluetoothlegatt.domain.oneM2MList.AE.AE_Root;
 import com.example.android.bluetoothlegatt.domain.oneM2MList.Container.Container_Root;
-import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
 import com.example.android.bluetoothlegatt.reuse.network.oneM2MRequest;
 
 import org.json.JSONException;
@@ -21,17 +18,10 @@ import java.util.Iterator;
  */
 
 public class Container {
-
-    private Context context;
     private Container_Root containerRoot;
-    private HttpRequester.NetworkResponseListenerXML XMLResponseListener;
-    private HttpRequester.NetworkResponseListenerJSON JSONResponseListener;
 
-    public Container(Context context, HttpRequester.NetworkResponseListenerXML XMLResponseListener, HttpRequester.NetworkResponseListenerJSON JSONResponseListener, Container_Root containerRoot) {
-        this.context = context;
+    public Container(Container_Root containerRoot) {
         this.containerRoot = containerRoot;
-        this.XMLResponseListener = XMLResponseListener;
-        this.JSONResponseListener = JSONResponseListener;
     }
 
     public void oneM2MResuest( ) {
@@ -55,10 +45,10 @@ public class Container {
         String operation = requestPrimitive.getOperation();
 
         if(accept.equals("application/xml")) {
-            oneM2MRequestor.XML(context, XMLResponseListener, operation, requestPrimitive);
+            oneM2MRequestor.XML(containerRoot.getContext(), containerRoot.getXMLResponseListener(), operation, requestPrimitive);
         } else if(accept.equals("application/json")) {
             try {
-                oneM2MRequestor.JSON(context, JSONResponseListener, operation, requestPrimitive);
+                oneM2MRequestor.JSON(containerRoot.getContext(), containerRoot.getJSONResponseListener(), operation, requestPrimitive);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -1,5 +1,9 @@
 package com.example.android.bluetoothlegatt.domain.oneM2MList.Container;
 
+import android.content.Context;
+
+import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
+
 import java.util.HashMap;
 
 /**
@@ -12,4 +16,7 @@ public interface Container_Root {
     HashMap<String, String> getHeaderList();
     String getXmlBody();
     String getJsonBody();
+    Context getContext();
+    HttpRequester.NetworkResponseListenerXML getXMLResponseListener();
+    HttpRequester.NetworkResponseListenerJSON getJSONResponseListener();
 }

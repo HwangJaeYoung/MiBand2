@@ -95,7 +95,7 @@ public class ClickEvent {
         cntRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Container containerRegistration = new Container(context, XMLResponseListener, JSONResponseListener, new Container_Create());
+                Container containerRegistration = new Container(new Container_Create(context, XMLResponseListener, JSONResponseListener));
                 containerRegistration.oneM2MResuest();
             }
         });
@@ -103,7 +103,7 @@ public class ClickEvent {
         cntRetrieve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Container containerRetrieve = new Container(context, XMLResponseListener, JSONResponseListener, new Container_Retrieve());
+                Container containerRetrieve = new Container(new Container_Retrieve(context, XMLResponseListener, JSONResponseListener));
                 containerRetrieve.oneM2MResuest();
             }
         });
@@ -111,7 +111,7 @@ public class ClickEvent {
         cntDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Container containerDelete = new Container(context, XMLResponseListener, JSONResponseListener, new Container_Delete());
+                Container containerDelete = new Container(new Container_Delete(context, XMLResponseListener, JSONResponseListener));
                 containerDelete.oneM2MResuest();
             }
         });
@@ -120,7 +120,7 @@ public class ClickEvent {
         cinRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ContentInstance contentInstanceRegistration = new ContentInstance(context, XMLResponseListener, JSONResponseListener, new ContentInstance_Create());
+                ContentInstance contentInstanceRegistration = new ContentInstance(new ContentInstance_Create(context, XMLResponseListener, JSONResponseListener));
                 contentInstanceRegistration.oneM2MResuest();
             }
         });
@@ -128,7 +128,7 @@ public class ClickEvent {
         cinRetrieve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ContentInstance contentInstanceRetrieve = new ContentInstance(context, XMLResponseListener, JSONResponseListener, new ContentInstance_Retrieve());
+                ContentInstance contentInstanceRetrieve = new ContentInstance(new ContentInstance_Retrieve(context, XMLResponseListener, JSONResponseListener));
                 contentInstanceRetrieve.oneM2MResuest();
             }
         });

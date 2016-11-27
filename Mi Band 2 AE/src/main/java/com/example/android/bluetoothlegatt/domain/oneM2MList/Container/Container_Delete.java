@@ -26,7 +26,11 @@ public class Container_Delete implements Container_Root {
     private String KEY_HEADER_X_M2M_RI = "X-M2M-RI";
     private String KEY_HEADER_X_M2M_ORIGIN = "X-M2M-Origin";
 
-    public Container_Delete() {
+    public Container_Delete(Context context, HttpRequester.NetworkResponseListenerXML XMLResponseListener, HttpRequester.NetworkResponseListenerJSON JSONResponseListener) {
+
+        this.context = context;
+        this.XMLResponseListener = XMLResponseListener;
+        this.JSONResponseListener = JSONResponseListener;
 
         this.containerDeleteHeaderList = new HashMap<String, String>();
 
@@ -55,4 +59,10 @@ public class Container_Delete implements Container_Root {
     public String getJsonBody() {
         return null;
     }
+
+    public Context getContext() { return context; }
+
+    public HttpRequester.NetworkResponseListenerXML getXMLResponseListener() { return XMLResponseListener; }
+
+    public HttpRequester.NetworkResponseListenerJSON getJSONResponseListener() { return JSONResponseListener; }
 }

@@ -31,8 +31,11 @@ public class Container_Create implements Container_Root {
     private String KEY_HEADER_X_M2M_ORIGIN = "X-M2M-Origin";
     private String KEY_HEADER_CONTENT_TYPE = "Content-Type";
 
-    public Container_Create() {
+    public Container_Create(Context context, HttpRequester.NetworkResponseListenerXML XMLResponseListener, HttpRequester.NetworkResponseListenerJSON JSONResponseListener) {
 
+        this.context = context;
+        this.XMLResponseListener = XMLResponseListener;
+        this.JSONResponseListener = JSONResponseListener;
 
         this.containerCreateHeaderList = new HashMap<String, String>();
 
@@ -74,4 +77,10 @@ public class Container_Create implements Container_Root {
     public String getJsonBody() {
         return jsonBody;
     }
+
+    public Context getContext() { return context; }
+
+    public HttpRequester.NetworkResponseListenerXML getXMLResponseListener() { return XMLResponseListener; }
+
+    public HttpRequester.NetworkResponseListenerJSON getJSONResponseListener() { return JSONResponseListener; }
 }

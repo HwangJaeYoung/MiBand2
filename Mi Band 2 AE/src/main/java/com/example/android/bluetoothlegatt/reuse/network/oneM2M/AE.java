@@ -1,12 +1,10 @@
 package com.example.android.bluetoothlegatt.reuse.network.oneM2M;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.example.android.bluetoothlegatt.domain.MainHeaderItem;
 import com.example.android.bluetoothlegatt.domain.RequestPrimitive;
 import com.example.android.bluetoothlegatt.domain.oneM2MList.AE.AE_Root;
-import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
 import com.example.android.bluetoothlegatt.reuse.network.oneM2MRequest;
 
 import org.json.JSONException;
