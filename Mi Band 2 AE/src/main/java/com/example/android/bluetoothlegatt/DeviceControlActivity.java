@@ -38,8 +38,10 @@ import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.example.android.bluetoothlegatt.domain.oneM2MList.ContentInstance.ContentInstance_Create;
 import com.example.android.bluetoothlegatt.reuse.event.ClickEvent;
 import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
+import com.example.android.bluetoothlegatt.reuse.network.oneM2M.ContentInstance;
 
 import org.json.JSONObject;
 
@@ -94,6 +96,9 @@ public class DeviceControlActivity extends Activity {
     private Button aeDelete;
     private Button cntDelete;
     private Button cinDelete;
+
+    // Walking step value
+    public static String walkingStepValue = "0";
 
     public DeviceControlActivity() {
         handler = new Handler();
@@ -431,19 +436,20 @@ public class DeviceControlActivity extends Activity {
         });
     }
 
-    private void displayData(String data)
-    {
-        if (data != null)
-        {
+    private void displayData(String data) {
+        Log.i("testing", "Data Value : " + data);
+        if (data != null) {
             String hex = data.split("\n")[1];
             String[] hex1 = hex.split(" ");
             Log.i(TAG, " display data: " + data );
             String hexValue = hex1[2].concat(hex1[1]);
             Integer i = Integer.parseInt(hexValue,16);
-//            Integer j = Integer.parseInt(hex1[2],16);
-//            Integer k = j*10 + i;
             Log.i(TAG, " display data: " + hexValue + " " + i);
             mDataField.setText(""+ i);
+            walkingStepValue = "" + i;
+
+            ContentInstance contentInstanceRegistration = new ContentInstance(getApplicationContext(), XMLResponseListener, JSONResponseListener, new ContentInstance_Create());
+            contentInstanceRegistration.oneM2MResuest();
         }
     }
 

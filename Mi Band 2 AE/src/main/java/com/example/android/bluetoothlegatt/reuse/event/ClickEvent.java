@@ -10,9 +10,12 @@ import com.example.android.bluetoothlegatt.domain.oneM2MList.AE.AE_Retrieve;
 import com.example.android.bluetoothlegatt.domain.oneM2MList.Container.Container_Create;
 import com.example.android.bluetoothlegatt.domain.oneM2MList.Container.Container_Delete;
 import com.example.android.bluetoothlegatt.domain.oneM2MList.Container.Container_Retrieve;
+import com.example.android.bluetoothlegatt.domain.oneM2MList.ContentInstance.ContentInstance_Create;
+import com.example.android.bluetoothlegatt.domain.oneM2MList.ContentInstance.ContentInstance_Retrieve;
 import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
 import com.example.android.bluetoothlegatt.reuse.network.oneM2M.AE;
 import com.example.android.bluetoothlegatt.reuse.network.oneM2M.Container;
+import com.example.android.bluetoothlegatt.reuse.network.oneM2M.ContentInstance;
 
 /**
  * Created by Blossom on 2016-11-27.
@@ -117,14 +120,16 @@ public class ClickEvent {
         cinRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ContentInstance contentInstanceRegistration = new ContentInstance(context, XMLResponseListener, JSONResponseListener, new ContentInstance_Create());
+                contentInstanceRegistration.oneM2MResuest();
             }
         });
 
         cinRetrieve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ContentInstance contentInstanceRetrieve = new ContentInstance(context, XMLResponseListener, JSONResponseListener, new ContentInstance_Retrieve());
+                contentInstanceRetrieve.oneM2MResuest();
             }
         });
     }

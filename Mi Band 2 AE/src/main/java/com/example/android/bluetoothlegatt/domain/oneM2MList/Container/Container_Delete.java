@@ -13,7 +13,7 @@ public class Container_Delete implements Container_Root {
 
     private String title;
     private String operation = "DELETE";
-    private HashMap<String, String> containerCreateHeaderList;
+    private HashMap<String, String> containerDeleteHeaderList;
     private String url;
 
     private String KEY_HEADER_ACCEPT = "Accept";
@@ -23,11 +23,11 @@ public class Container_Delete implements Container_Root {
     public Container_Delete() {
         this.title = "AE 리소스 삭제";
 
-        this.containerCreateHeaderList = new HashMap<String, String>();
+        this.containerDeleteHeaderList = new HashMap<String, String>();
 
-        this.containerCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
-        this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
-        this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
+        this.containerDeleteHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
+        this.containerDeleteHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
+        this.containerDeleteHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
 
         url = URLInfomation.serverURL + "/" + URLInfomation.AEName + "/" + URLInfomation.containerName;
     }
@@ -40,7 +40,7 @@ public class Container_Delete implements Container_Root {
     public String getOperation() { return operation; }
 
     public HashMap<String, String> getHeaderList() {
-        return containerCreateHeaderList;
+        return containerDeleteHeaderList;
     }
 
     public String getXmlBody() {

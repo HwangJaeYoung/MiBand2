@@ -166,12 +166,13 @@
             android:background="#FFD6B977"
             android:layout_margin="5dp"
             />
+
         <Button
-            android:text="CIN DEL"
+            android:text="Not used"
             android:id="@+id/cin_delete"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:background="#b6968d"
+            android:background="#8480a5"
             android:layout_margin="5dp"
             />
 

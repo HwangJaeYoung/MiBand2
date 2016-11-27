@@ -12,7 +12,7 @@ public class Container_Retrieve implements Container_Root {
 
     private String title;
     private String operation = "GET";
-    private HashMap<String, String> containerCreateHeaderList;
+    private HashMap<String, String> containerRetrieveHeaderList;
     private String url;
 
     private String KEY_HEADER_ACCEPT = "Accept";
@@ -20,11 +20,11 @@ public class Container_Retrieve implements Container_Root {
     private String KEY_HEADER_X_M2M_ORIGIN = "X-M2M-Origin";
 
     public Container_Retrieve() {
-        this.containerCreateHeaderList = new HashMap<String, String>();
+        this.containerRetrieveHeaderList = new HashMap<String, String>();
 
-        this.containerCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
-        this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
-        this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
+        this.containerRetrieveHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
+        this.containerRetrieveHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
+        this.containerRetrieveHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
 
         url = URLInfomation.serverURL + "/" + URLInfomation.AEName + "/" + URLInfomation.containerName;
     }
@@ -36,7 +36,7 @@ public class Container_Retrieve implements Container_Root {
 
     public String getOperation() { return operation; }
 
-    public HashMap<String, String> getHeaderList() { return containerCreateHeaderList; }
+    public HashMap<String, String> getHeaderList() { return containerRetrieveHeaderList; }
 
     public String getXmlBody() {
         return null;
