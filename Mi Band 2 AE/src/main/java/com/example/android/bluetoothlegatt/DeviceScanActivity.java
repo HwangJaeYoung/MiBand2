@@ -114,8 +114,6 @@ public class DeviceScanActivity extends Activity
         }
 
          tester = new oneM2MTester(getApplicationContext());
-        // view.setDeviceIPAddress(tester.getLocalIpAddress(), tester.getPortNumber());
-         Log.w("Httpd", tester.getLocalIpAddress() + "and port is: " + tester.getPortNumber());
 
          try {
              tester.getWebServer().start();
@@ -382,11 +380,8 @@ public class DeviceScanActivity extends Activity
                 }
             };
 
-    static class ViewHolder
-    {
-
+    static class ViewHolder {
         TextView deviceName;
-
         TextView deviceAddress;
     }
 
@@ -399,22 +394,4 @@ public class DeviceScanActivity extends Activity
         if (tester.getWebServer() != null)
             tester.getWebServer().stop();
     }
-//    @Override
-//    protected void onListItemClick(ListView l, View v, int position, long id)
-//    {
-//        final BluetoothDevice device = mLeDeviceListAdapter.getDevice(position);
-//        if (device == null)
-//            return;
-//        final Intent intent = new Intent(this, DeviceControlActivity.class);
-//        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
-//        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
-//        if (mScanning)
-//        {
-//            mBluetoothAdapter.stopLeScan(mLeScanCallback);
-//            mScanning = false;
-//        }
-//        startActivity(intent);
-//    }
-//
-
 }

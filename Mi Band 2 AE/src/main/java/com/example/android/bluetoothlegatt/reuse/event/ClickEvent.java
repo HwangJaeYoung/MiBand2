@@ -70,7 +70,7 @@ public class ClickEvent {
         aeRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AE aeRegistration = new AE(context, XMLResponseListener, JSONResponseListener, new AE_Create());
+                AE aeRegistration = new AE(new AE_Create(context, XMLResponseListener, JSONResponseListener));
                 aeRegistration.oneM2MResuest();
             }
         });
@@ -78,7 +78,7 @@ public class ClickEvent {
         aeRetrieve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AE aeRetrieve = new AE(context, XMLResponseListener, JSONResponseListener, new AE_Retrieve());
+                AE aeRetrieve = new AE(new AE_Retrieve(context, XMLResponseListener, JSONResponseListener));
                 aeRetrieve.oneM2MResuest();
             }
         });
@@ -86,7 +86,7 @@ public class ClickEvent {
         aeDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AE aeDelete = new AE(context, XMLResponseListener, JSONResponseListener, new AE_Delete());
+                AE aeDelete = new AE(new AE_Delete(context, XMLResponseListener, JSONResponseListener));
                 aeDelete.oneM2MResuest();
             }
         });

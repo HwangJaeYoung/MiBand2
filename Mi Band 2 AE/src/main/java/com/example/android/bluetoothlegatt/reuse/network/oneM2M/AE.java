@@ -20,17 +20,10 @@ import java.util.Iterator;
  */
 
 public class AE {
-
-    private Context context;
     private AE_Root aeRoot;
-    private HttpRequester.NetworkResponseListenerXML XMLResponseListener;
-    private HttpRequester.NetworkResponseListenerJSON JSONResponseListener;
 
-    public AE(Context context, HttpRequester.NetworkResponseListenerXML XMLResponseListener, HttpRequester.NetworkResponseListenerJSON JSONResponseListener, AE_Root aeRoot) {
-        this.context = context;
+    public AE( AE_Root aeRoot) {
         this.aeRoot = aeRoot;
-        this.XMLResponseListener = XMLResponseListener;
-        this.JSONResponseListener = JSONResponseListener;
     }
 
     public void oneM2MResuest( ) {
@@ -54,10 +47,10 @@ public class AE {
         String operation = requestPrimitive.getOperation();
 
         if(accept.equals("application/xml")) {
-            oneM2MRequestor.XML(context, XMLResponseListener, operation, requestPrimitive);
+            oneM2MRequestor.XML(aeRoot.getContext(), aeRoot.getXMLResponseListener(), operation, requestPrimitive);
         } else if(accept.equals("application/json")) {
             try {
-                oneM2MRequestor.JSON(context, JSONResponseListener, operation, requestPrimitive);
+                oneM2MRequestor.JSON(aeRoot.getContext(), aeRoot.getJSONResponseListener(), operation, requestPrimitive);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

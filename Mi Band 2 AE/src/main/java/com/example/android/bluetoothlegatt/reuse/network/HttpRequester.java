@@ -24,11 +24,8 @@ public class HttpRequester {
     //private static final String BASE_URL = "http://192.168.35.135:62590";
     private static final String BASE_URL = "http://203.253.128.151:7579";
 
-
-
     public static AsyncHttpClient syncHttpClient= new SyncHttpClient();
     private static AsyncHttpClient client = new AsyncHttpClient();
-
 
     // JSON Function
     public static void postJSON(Context context, RequestParams params, JsonHttpResponseHandler responseHandler, RequestPrimitive requestPrimitive) {

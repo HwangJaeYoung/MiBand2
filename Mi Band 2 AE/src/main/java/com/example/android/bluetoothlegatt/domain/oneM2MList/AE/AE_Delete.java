@@ -1,6 +1,9 @@
 package com.example.android.bluetoothlegatt.domain.oneM2MList.AE;
 
+import android.content.Context;
+
 import com.example.android.bluetoothlegatt.domain.URLInfomation;
+import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
 
 import java.util.HashMap;
 
@@ -10,7 +13,10 @@ import java.util.HashMap;
 
 public class AE_Delete implements AE_Root {
 
-    private String title;
+    private Context context;
+    private HttpRequester.NetworkResponseListenerXML XMLResponseListener;
+    private HttpRequester.NetworkResponseListenerJSON JSONResponseListener;
+
     private String operation = "DELETE";
     private HashMap<String, String> aeRetrieveHeaderList;
     private String url;
@@ -19,8 +25,11 @@ public class AE_Delete implements AE_Root {
     private String KEY_HEADER_X_M2M_RI = "X-M2M-RI";
     private String KEY_HEADER_X_M2M_ORIGIN = "X-M2M-Origin";
 
-    public AE_Delete() {
-        this.title = "AE 리소스 삭제";
+    public AE_Delete(Context context, HttpRequester.NetworkResponseListenerXML XMLResponseListener, HttpRequester.NetworkResponseListenerJSON JSONResponseListener) {
+
+        this.context = context;
+        this.XMLResponseListener = XMLResponseListener;
+        this.JSONResponseListener = JSONResponseListener;
 
         this.aeRetrieveHeaderList = new HashMap<String, String>();
 
@@ -49,4 +58,13 @@ public class AE_Delete implements AE_Root {
     public String getJsonBody() {
         return null;
     }
+
+    @Override
+    public Context getContext() { return context; }
+
+    @Override
+    public HttpRequester.NetworkResponseListenerXML getXMLResponseListener() { return XMLResponseListener; }
+
+    @Override
+    public HttpRequester.NetworkResponseListenerJSON getJSONResponseListener() { return JSONResponseListener; }
 }

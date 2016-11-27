@@ -6,8 +6,8 @@ package com.example.android.bluetoothlegatt.testing;
 
 interface oneM2MTestcase {
     /**** Testcase list ****/
-    int TESTCASE_AE_INITIAL_REGISTRATION = 0;
-    int TESTCASE_AE_RE_REGISTRATION = 1;
-
+    String TC_AE_REG_BV_001 = "1101001";
+    String TC_AE_DMR_BV_001 = "1201001";
+    String TC_AE_DMR_BV_003 = "1201003";
     // Adding the other testcases...
 }

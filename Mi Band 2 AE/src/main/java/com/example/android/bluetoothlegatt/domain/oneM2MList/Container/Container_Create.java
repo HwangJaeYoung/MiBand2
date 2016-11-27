@@ -1,7 +1,10 @@
 package com.example.android.bluetoothlegatt.domain.oneM2MList.Container;
 
+import android.content.Context;
+
 import com.example.android.bluetoothlegatt.domain.URLInfomation;
 import com.example.android.bluetoothlegatt.domain.oneM2MList.AE.AE_Root;
+import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
 
 import java.util.HashMap;
 
@@ -10,6 +13,10 @@ import java.util.HashMap;
  */
 
 public class Container_Create implements Container_Root {
+
+    private Context context;
+    private HttpRequester.NetworkResponseListenerXML XMLResponseListener;
+    private HttpRequester.NetworkResponseListenerJSON JSONResponseListener;
 
     private String title;
     private String operation = "POST";
@@ -25,6 +32,8 @@ public class Container_Create implements Container_Root {
     private String KEY_HEADER_CONTENT_TYPE = "Content-Type";
 
     public Container_Create() {
+
+
         this.containerCreateHeaderList = new HashMap<String, String>();
 
         this.containerCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");

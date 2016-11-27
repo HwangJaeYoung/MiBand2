@@ -35,14 +35,13 @@ public class oneM2MTester {
     public class WebServer extends NanoHTTPD {
         public WebServer() {
             super(PORT);
-
         }
 
         @Override
         public Response serve(IHTTPSession session) {
 
-            String responseBody = session.getQueryParameterString();
-            Log.i("testing", "result : " + responseBody);
+            String testcase = "";
+            String parsedTestcase = "";
 
             try {
                 HashMap<String, String> files = new HashMap<String, String>();
@@ -52,33 +51,37 @@ public class oneM2MTester {
 
                 while(keys.hasNext()) {
                     String key = keys.next();
+                    testcase = files.get(key);
                     Log.i("testing", "Key : " + key + ", " + "Value : " + files.get(key));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-			/* while( keys.hasNext() ){
-				String key = keys.next();
-				Log.i("Testing", "Key : " + key + ", " + "Value : " + map.get(key));
-			}
+            char testcaseArray[] = testcase.toCharArray();
 
-            testcaseNumber = Integer.parseInt(map.get("testcase"));
+            for(int i = 0; i < testcaseArray.length; i++) {
+                if(testcaseArray[i] != '\"')
+                    parsedTestcase += testcaseArray[i];
+            }
 
-            oneM2MStimulator oneM2MStimulator = new oneM2MStimulator( );
+            Log.i("testing", "Parsed Testcase : " + parsedTestcase);
 
-            switch(testcaseNumber) {
-                case oneM2MTestcase.TESTCASE_AE_INITIAL_REGISTRATION :
-                case oneM2MTestcase.TESTCASE_AE_RE_REGISTRATION :
-                    oneM2MStimulator.Create();
+            oneM2MStimulator oneM2MStimulator = new oneM2MStimulator(context);
+
+            switch(parsedTestcase) {
+                case oneM2MTestcase.TC_AE_REG_BV_001 :
+                    oneM2MStimulator.TC_AE_REG_BV_001();
+                  break;
+
+                case oneM2MTestcase.TC_AE_DMR_BV_001 :
+                    oneM2MStimulator.TC_AE_REG_BV_001();
                     break;
 
-                case 2 :
+                case oneM2MTestcase.TC_AE_DMR_BV_003 :
+                    oneM2MStimulator.TC_AE_DMR_BV_003();
                     break;
-
-                case 3 :
-                    break;
-            } */
+            }
             return new NanoHTTPD.Response("Android Response");
         }
     }
@@ -88,35 +91,13 @@ public class oneM2MTester {
         return server;
     }
 
-    public String getLocalIpAddress() {
-        try {
-            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
-                NetworkInterface intf = en.nextElement();
-
-                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
-                    InetAddress inetAddress = enumIpAddr.nextElement();
-
-                    if(!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
-                        String ipAddr = inetAddress.getHostAddress();
-                        return ipAddr;
-                    }
-                }
-            }
-        } catch (SocketException ex) {
-            Log.d("Server", ex.toString());
-        }
-        return null;
-    }
-
     public int getPortNumber() {
         return PORT;
     }
 
     interface oneM2MOperation {
-        void Create();
-        void Retrieve();
-        void Update();
-        void Delete();
-        void Notify();
+        void TC_AE_REG_BV_001();
+        void TC_AE_DMR_BV_001();
+        void TC_AE_DMR_BV_003();
     }
 }

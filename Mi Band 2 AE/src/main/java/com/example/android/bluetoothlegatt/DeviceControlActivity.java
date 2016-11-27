@@ -551,4 +551,16 @@ public class DeviceControlActivity extends Activity {
         intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
         return intentFilter;
     }
+
+    public Context getContext() {
+        return getApplicationContext();
+    }
+
+    public HttpRequester.NetworkResponseListenerXML getXMLResponseListener() {
+        return XMLResponseListener;
+    }
+
+    public HttpRequester.NetworkResponseListenerJSON getJSONResponseListener() {
+        return JSONResponseListener;
+    }
 }
