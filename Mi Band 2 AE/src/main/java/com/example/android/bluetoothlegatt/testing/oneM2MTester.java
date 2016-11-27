@@ -2,15 +2,18 @@ package com.example.android.bluetoothlegatt.testing;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import cz.msebera.android.httpclient.entity.StringEntity;
 import fi.iki.elonen.NanoHTTPD;
 
 /**
@@ -19,7 +22,7 @@ import fi.iki.elonen.NanoHTTPD;
 
 public class oneM2MTester {
 
-    private static final int PORT = 8080; // Android server port
+    private static final int PORT = 62590; // Android server port
     private WebServer server;
     private Context context;
     private int testcaseNumber;
@@ -32,19 +35,33 @@ public class oneM2MTester {
     public class WebServer extends NanoHTTPD {
         public WebServer() {
             super(PORT);
+
         }
 
         @Override
         public Response serve(IHTTPSession session) {
 
-            Log.d("session", session.toString());
-            Map<String, String> map = session.getHeaders();
-            Iterator<String> keys = map.keySet().iterator();
+            String responseBody = session.getQueryParameterString();
+            Log.i("testing", "result : " + responseBody);
+
+            try {
+                HashMap<String, String> files = new HashMap<String, String>();
+                session.parseBody(files);
+
+                Iterator<String> keys = files.keySet().iterator();
+
+                while(keys.hasNext()) {
+                    String key = keys.next();
+                    Log.i("testing", "Key : " + key + ", " + "Value : " + files.get(key));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 			/* while( keys.hasNext() ){
 				String key = keys.next();
 				Log.i("Testing", "Key : " + key + ", " + "Value : " + map.get(key));
-			} */
+			}
 
             testcaseNumber = Integer.parseInt(map.get("testcase"));
 
@@ -61,7 +78,7 @@ public class oneM2MTester {
 
                 case 3 :
                     break;
-            }
+            } */
             return new NanoHTTPD.Response("Android Response");
         }
     }

@@ -71,8 +71,27 @@
             android:textOn="@string/auto"
             android:textOff="@string/manual"
             />
-
     </LinearLayout>
+
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Device IP Address : "
+            android:textSize="15sp"/>
+        <Space android:layout_width="5dp"
+            android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/tv_device_ipaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+
+
 
     <LinearLayout android:orientation="horizontal"
         android:layout_width="match_parent"

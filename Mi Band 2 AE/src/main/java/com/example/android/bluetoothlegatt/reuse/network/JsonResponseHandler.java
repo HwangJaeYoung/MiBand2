@@ -12,7 +12,6 @@ public class JsonResponseHandler extends JsonHttpResponseHandler {
 
     public JsonResponseHandler(HttpRequester.NetworkResponseListenerJSON aNetworkResponseListener) {
         this.networkResponseListener = aNetworkResponseListener;
-
     }
 
     // 여기가 콜백 메소드 부분이다.

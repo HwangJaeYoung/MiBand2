@@ -49,8 +49,13 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -96,6 +101,9 @@ public class DeviceControlActivity extends Activity {
     private Button aeDelete;
     private Button cntDelete;
     private Button cinDelete;
+
+    // Device IP Address
+    private TextView tvDeviceIPaddress;
 
     // Walking step value
     public static String walkingStepValue = "0";
@@ -359,8 +367,7 @@ public class DeviceControlActivity extends Activity {
     };
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
         if (mBluetoothLeService != null)
@@ -368,6 +375,29 @@ public class DeviceControlActivity extends Activity {
             final boolean result = mBluetoothLeService.connect(mDeviceAddress);
             Log.d(TAG, "Connect request result=" + result);
         }
+
+        tvDeviceIPaddress = (TextView)findViewById(R.id.tv_device_ipaddress);
+        tvDeviceIPaddress.setText(getLocalIpAddress()+":62590");
+    }
+
+    public String getLocalIpAddress() {
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+                NetworkInterface intf = en.nextElement();
+
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+
+                    if(!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
+                        String ipAddr = inetAddress.getHostAddress();
+                        return ipAddr;
+                    }
+                }
+            }
+        } catch (SocketException ex) {
+            Log.d("Server", ex.toString());
+        }
+        return null;
     }
 
     @Override
