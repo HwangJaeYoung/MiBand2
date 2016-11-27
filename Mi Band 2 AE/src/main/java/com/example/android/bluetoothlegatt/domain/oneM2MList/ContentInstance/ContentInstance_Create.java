@@ -2,7 +2,7 @@ package com.example.android.bluetoothlegatt.domain.oneM2MList.ContentInstance;
 
 import android.content.Context;
 
-import com.example.android.bluetoothlegatt.DeviceControlActivity;
+import com.example.android.bluetoothlegatt.ui.DeviceControlActivity;
 import com.example.android.bluetoothlegatt.domain.URLInfomation;
 import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
 

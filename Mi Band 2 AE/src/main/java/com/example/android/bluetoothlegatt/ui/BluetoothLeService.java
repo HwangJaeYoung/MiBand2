@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.bluetoothlegatt;
+package com.example.android.bluetoothlegatt.ui;
 
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;

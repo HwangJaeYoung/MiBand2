@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#23c253"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/mid"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <RelativeLayout
+                        android:layout_width="130dp"
+                        android:layout_height="49dp" >
+
+                        <ImageView
+                            android:id="@+id/iv_header_layout_img"
+                            android:layout_width="18dp"
+                            android:layout_height="17dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="17dp"
+                            android:src="@drawable/heaer_ic" />
+
+                        <TextView
+                            android:id="@+id/tv_header_layout_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="17dp"
+                            android:layout_toRightOf="@id/iv_header_layout_img"
+                            android:text="Header"
+                            android:textColor="#808a99"
+                            android:textSize="18sp" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <!-- Header List start -->
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:id="@+id/lv_result_header_format_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:divider="#dde6f2"
+                        android:dividerHeight="0.5dp" >
+                    </ListView>
+                </LinearLayout>
+                <!-- Header List end -->
+            </LinearLayout>
+
+            <View
+                android:id="@+id/tip3"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#DDE6F2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp" >
+
+                    <ImageView
+                        android:id="@+id/iv_body"
+                        android:layout_width="18dp"
+                        android:layout_height="17dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="17dp"
+                        android:src="@drawable/heaer_ic" />
+
+                    <TextView
+                        android:id="@+id/tv_body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="17dp"
+                        android:layout_toRightOf="@id/iv_body"
+                        android:text="Body"
+                        android:textColor="#808a99"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="19dp"
+                    android:orientation="vertical" >
+
+                    <EditText
+                        android:id="@+id/et_result_body_window"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#fff"
+                        android:gravity="top|left"
+                        android:textColor="#323a45"
+                        android:textColorHint="#b0bac8"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/tip4"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#DDE6F2" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

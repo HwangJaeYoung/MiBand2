@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.bluetoothlegatt;
+package com.example.android.bluetoothlegatt.ui;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -32,13 +32,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import com.example.android.bluetoothlegatt.R;
 import com.example.android.bluetoothlegatt.testing.oneM2MTester;
 /**
  * Activity for scanning and displaying available Bluetooth LE devices.

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.bluetoothlegatt;
+package com.example.android.bluetoothlegatt.ui;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothGattCharacteristic;
@@ -33,34 +33,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ExpandableListView;
-import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import com.example.android.bluetoothlegatt.domain.oneM2MList.ContentInstance.ContentInstance_Create;
+import com.example.android.bluetoothlegatt.R;
 import com.example.android.bluetoothlegatt.reuse.event.ClickEvent;
 import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
-import com.example.android.bluetoothlegatt.reuse.network.oneM2M.ContentInstance;
 
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import cz.msebera.android.httpclient.Header;
 
