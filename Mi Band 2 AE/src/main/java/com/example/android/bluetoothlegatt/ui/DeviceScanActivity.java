@@ -43,46 +43,33 @@ import com.example.android.bluetoothlegatt.testing.oneM2MTester;
 /**
  * Activity for scanning and displaying available Bluetooth LE devices.
  */
-public class DeviceScanActivity extends Activity
-{
+public class DeviceScanActivity extends Activity  {
 
     private final static String TAG = DeviceScanActivity.class.getSimpleName();
-
     private LeDeviceListAdapter mLeDeviceListAdapter; //list of BLE devices we found
-
     private BluetoothAdapter mBluetoothAdapter; // this is we are getting from the system to start scanning
-
     private boolean mScanning;
-
     private Handler mHandler;
-
     private static final int REQUEST_ENABLE_BT = 1;
 
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 10000;
 
     private TextView mBLEFoundTextView;
-
     private TextView mDevicesFoundTextView;
 
     private oneM2MTester tester;
 
-
-
     @Override
-    public void onCreate(Bundle savedInstanceState)
-     {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
 
-// Setting up our labels
+        // Setting up our labels
         mBLEFoundTextView = (TextView) findViewById(R.id.intro_message_view);
         mDevicesFoundTextView = (TextView) findViewById(R.id.message2_view);
-
-
         mBLEFoundTextView.setText("Looking for Mi Band 2...");
-
         mDevicesFoundTextView.setText("");
 
         getActionBar().setTitle(R.string.title_devices);
@@ -92,22 +79,19 @@ public class DeviceScanActivity extends Activity
 
         // Use this check to determine whether BLE is supported on the device.  Then you can
         // selectively disable BLE-related features.
-        if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE))
-        {
+        if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             Toast.makeText(this, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
             finish();
         }
 
         // Initializes a Bluetooth adapter.  For API level 18 and above, get a reference to
         // BluetoothAdapter through BluetoothManager.
-        final BluetoothManager bluetoothManager =
-                (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+        final BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
 
         mBluetoothAdapter = bluetoothManager.getAdapter(); // Getting the adapter for bluetooth
 
         // Checks if Bluetooth is supported on the device.
-        if (mBluetoothAdapter == null)
-        {
+        if (mBluetoothAdapter == null) {
             Toast.makeText(this, R.string.error_bluetooth_not_supported, Toast.LENGTH_SHORT).show();
             finish();
             return;
@@ -122,34 +106,27 @@ public class DeviceScanActivity extends Activity
          }
 
          Log.w("Httpd", "Web server initialized.");
-
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-        if (!mScanning)
-        {
+
+        if (!mScanning) {
             menu.findItem(R.id.menu_stop).setVisible(false);
             menu.findItem(R.id.menu_scan).setVisible(true);
             menu.findItem(R.id.menu_refresh).setActionView(null);
-        }
-        else
-        {
+        } else {
             menu.findItem(R.id.menu_stop).setVisible(true);
             menu.findItem(R.id.menu_scan).setVisible(false);
-            menu.findItem(R.id.menu_refresh).setActionView(
-                    R.layout.actionbar_indeterminate_progress);
+            menu.findItem(R.id.menu_refresh).setActionView(R.layout.actionbar_indeterminate_progress);
         }
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.menu_scan:
                 mLeDeviceListAdapter.clear();
                 mBLEFoundTextView.setText("Looking for Mi Band 2...");
@@ -157,67 +134,67 @@ public class DeviceScanActivity extends Activity
 
                 scanLeDevice(true);
                 break;
+
             case R.id.menu_stop:
                 scanLeDevice(false);
                 break;
+
             case R.id.menu_connect2:
                 Log.i(TAG, "Connect to BLE Peripheral");
+
                 int position = -1;
+
                 if(mLeDeviceListAdapter.getCount() == 0){
                     final Intent intent = new Intent(this, DeviceControlActivity.class);
-                    if (mScanning)
-                    {
+
+                    if (mScanning) {
                         mBluetoothAdapter.stopLeScan(mLeScanCallback);
                         mScanning = false;
                     }
                     startActivity(intent);
                 }
-                for(int i=0; i < mLeDeviceListAdapter.getCount(); i++)
-                {
+
+                for(int i=0; i < mLeDeviceListAdapter.getCount(); i++) {
                     BluetoothDevice d = mLeDeviceListAdapter.getDevice(i);
                     Log.i(TAG,"device name is: '" + d.getName() + "'");
 
-                    if (d.getName() != null &&
-                            d.getName().compareTo("MI Band 2") == 0)
-                    {
+                    if (d.getName() != null && d.getName().compareTo("MI Band 2") == 0) {
                         Log.i(TAG, "Got device");
                         position = i;
                         break;
                     }
                 }
-                if (position != -1)
-                {
+
+                if (position != -1) {
                     final BluetoothDevice device = mLeDeviceListAdapter.getDevice(position);
+
                     if (device == null)
                         return (false);
+
                     final Intent intent = new Intent(this, DeviceControlActivity.class);
+
                     intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
                     intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
-                    if (mScanning)
-                    {
+
+                    if (mScanning) {
                         mBluetoothAdapter.stopLeScan(mLeScanCallback);
                         mScanning = false;
                     }
                     startActivity(intent);
-                }
-                else
+                } else
                     Log.i(TAG, "Unable to find device");
-
         }
         return true;
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
 
         // Ensures Bluetooth is enabled on the device.  If Bluetooth is not currently enabled,
         // fire an intent to display a dialog asking the user to grant permission to enable it.
-        if (!mBluetoothAdapter.isEnabled())
-        {
-            if (!mBluetoothAdapter.isEnabled())
-            {
+        if (!mBluetoothAdapter.isEnabled()) {
+            if (!mBluetoothAdapter.isEnabled()) {
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             }
@@ -229,11 +206,10 @@ public class DeviceScanActivity extends Activity
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         // User chose not to enable Bluetooth.
-        if (requestCode == REQUEST_ENABLE_BT && resultCode == Activity.RESULT_CANCELED)
-        {
+        if (requestCode == REQUEST_ENABLE_BT && resultCode == Activity.RESULT_CANCELED) {
             finish();
             return;
         }
@@ -241,23 +217,20 @@ public class DeviceScanActivity extends Activity
     }
 
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
         scanLeDevice(false);
         mLeDeviceListAdapter.clear();
     }
 
-    private void scanLeDevice(final boolean enable)
-    {
-        if (enable)
-        {
+    private void scanLeDevice(final boolean enable) {
+
+        if (enable) {
             // Stops scanning after a pre-defined scan period.
-            mHandler.postDelayed(new Runnable()
-            {
+            mHandler.postDelayed(new Runnable() {
+
                 @Override
-                public void run()
-                {
+                public void run() {
                     mScanning = false;
                     mBluetoothAdapter.stopLeScan(mLeScanCallback);
                     invalidateOptionsMenu();
@@ -266,9 +239,7 @@ public class DeviceScanActivity extends Activity
 
             mScanning = true;
             mBluetoothAdapter.startLeScan(mLeScanCallback);
-        }
-        else
-        {
+        } else {
             mScanning = false;
             mBluetoothAdapter.stopLeScan(mLeScanCallback);
         }
@@ -276,24 +247,19 @@ public class DeviceScanActivity extends Activity
     }
 
     // Adapter for holding devices found through scanning.
-    private class LeDeviceListAdapter extends BaseAdapter
-    {
+    private class LeDeviceListAdapter extends BaseAdapter {
 
         private ArrayList<BluetoothDevice> mLeDevices;
-
         private LayoutInflater mInflator;
 
-        public LeDeviceListAdapter()
-        {
+        public LeDeviceListAdapter() {
             super();
             mLeDevices = new ArrayList<BluetoothDevice>();
             mInflator = DeviceScanActivity.this.getLayoutInflater();
         }
 
-        public void addDevice(BluetoothDevice device)
-        {
-            if (!mLeDevices.contains(device))
-            {
+        public void addDevice(BluetoothDevice device) {
+            if (!mLeDevices.contains(device)) {
                 if (device.getName() == null)
                     return;
 
@@ -307,7 +273,6 @@ public class DeviceScanActivity extends Activity
 
                 if (device.getName().compareTo("MI Band 2") == 0)
                     mBLEFoundTextView.setText("Mi Band 2 found!");
-
             }
         }
 
@@ -340,25 +305,24 @@ public class DeviceScanActivity extends Activity
         }
 
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup)
-        {
+        public View getView(int i, View view, ViewGroup viewGroup) {
+
             ViewHolder viewHolder;
+
             // General ListView optimization code.
-            if (view == null)
-            {
+            if (view == null) {
                 view = mInflator.inflate(R.layout.listitem_device, null);
                 viewHolder = new ViewHolder();
                 viewHolder.deviceAddress = (TextView) view.findViewById(R.id.device_address);
                 viewHolder.deviceName = (TextView) view.findViewById(R.id.device_name);
                 view.setTag(viewHolder);
-            }
-            else
-            {
+            } else {
                 viewHolder = (ViewHolder) view.getTag();
             }
 
             BluetoothDevice device = mLeDevices.get(i);
             final String deviceName = device.getName();
+
             if (deviceName != null && deviceName.length() > 0)
                 viewHolder.deviceName.setText(deviceName);
             else
@@ -371,12 +335,10 @@ public class DeviceScanActivity extends Activity
 
     // Device scan callback.
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
-            new BluetoothAdapter.LeScanCallback()
-            {
+            new BluetoothAdapter.LeScanCallback() {
 
                 @Override
-                public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord)
-                {
+                public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
                     runOnUiThread(new Runnable()
                     {
                         @Override

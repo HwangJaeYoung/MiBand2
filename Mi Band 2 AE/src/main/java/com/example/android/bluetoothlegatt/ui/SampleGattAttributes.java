@@ -21,8 +21,7 @@ import java.util.HashMap;
 /**
  * This class includes a small subset of standard GATT attributes for demonstration purposes.
  */
-public class SampleGattAttributes
-{
+public class SampleGattAttributes {
 
     private static HashMap<String, String> attributes = new HashMap();
 
@@ -31,14 +30,12 @@ public class SampleGattAttributes
 
     public static String CHARACTERISTIC_UPDATE_NOTIFICATION_DESCRIPTOR_UUID = "00002902-0000-1000-8000-00805f9b34fb";
 
-    static
-    {
+    static {
         // Sample Services.
         attributes.put("0000fee0-0000-1000-8000-00805f9b34fb", "Test Service");
     }
 
-    public static String lookup(String uuid, String defaultName)
-    {
+    public static String lookup(String uuid, String defaultName) {
         String name = attributes.get(uuid);
         return name == null ? defaultName : name;
     }
