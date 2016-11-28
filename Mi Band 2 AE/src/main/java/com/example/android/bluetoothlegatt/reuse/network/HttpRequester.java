@@ -38,7 +38,7 @@ public class HttpRequester {
 
     public static void requestJSON(Context context, RequestParams params, JsonHttpResponseHandler responseHandler, RequestPrimitive requestPrimitive, boolean anIsPost) {
 
-        getClient().setTimeout(3000);
+        getClient().setMaxRetriesAndTimeout(1000, 20000);
 
         if (anIsPost) {
             StringEntity oneM2MBody = null;
@@ -56,7 +56,7 @@ public class HttpRequester {
 
     public static void requestXML(Context context, RequestParams params, XMLResponseHandler responseHandler, RequestPrimitive requestPrimitive, int operation) {
 
-        getClient().setTimeout(3000);
+        getClient().setMaxRetriesAndTimeout(1000, 20000);
 
         if (operation == oneM2MRequest.OPERATION_POST) {
             StringEntity oneM2MBody = null;
