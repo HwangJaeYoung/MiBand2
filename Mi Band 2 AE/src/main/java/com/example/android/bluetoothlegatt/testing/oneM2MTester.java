@@ -12,6 +12,8 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cz.msebera.android.httpclient.entity.StringEntity;
 import fi.iki.elonen.NanoHTTPD;
@@ -79,12 +81,37 @@ public class oneM2MTester {
                     break;
 
                 case oneM2MTestcase.TC_AE_DMR_BV_003 :
+                    timer.scheduleAtFixedRate(task, delay, intevalPeriod);
                     oneM2MStimulator.TC_AE_DMR_BV_003();
                     break;
             }
             return new NanoHTTPD.Response("Android Response");
         }
+
+        /****** Adding code for timer *****/
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+
+            }
+        };
+
+        Timer timer = new Timer();
+        long delay = 5000;
+        long intevalPeriod = 0;
+        /***********/
     }
+
+    /****** Adding code for timer *****/
+    public static class WorkTask extends TimerTask {
+        @Override
+        public void run() {
+            System.out.println("Timer.");
+            System.out.println("Timer..");
+            System.out.println("Timer...");
+        }
+    }
+    /***********/
 
     public WebServer getWebServer() {
         server = new WebServer();

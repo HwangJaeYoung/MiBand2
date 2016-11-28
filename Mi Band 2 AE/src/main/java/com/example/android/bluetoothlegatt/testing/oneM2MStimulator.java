@@ -4,8 +4,12 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.android.bluetoothlegatt.domain.oneM2MList.AE.AE_Create;
+import com.example.android.bluetoothlegatt.domain.oneM2MList.Container.Container_Create;
+import com.example.android.bluetoothlegatt.domain.oneM2MList.ContentInstance.ContentInstance_Create;
 import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
 import com.example.android.bluetoothlegatt.reuse.network.oneM2M.AE;
+import com.example.android.bluetoothlegatt.reuse.network.oneM2M.Container;
+import com.example.android.bluetoothlegatt.reuse.network.oneM2M.ContentInstance;
 
 import org.json.JSONObject;
 
@@ -28,12 +32,14 @@ public class oneM2MStimulator implements oneM2MTester.oneM2MOperation {
 
     @Override
     public void TC_AE_DMR_BV_001() {
-
+        Container containerRegistration = new Container(new Container_Create(context, XMLResponseListener, JSONResponseListener));
+        containerRegistration.oneM2MResuest();
     }
 
     @Override
     public void TC_AE_DMR_BV_003() {
-
+        ContentInstance contentInstanceRegistration = new ContentInstance(new ContentInstance_Create(context, XMLResponseListener, JSONResponseListener));
+        contentInstanceRegistration.oneM2MResuest();
     }
 
     /**** User defined code ****/
@@ -43,7 +49,6 @@ public class oneM2MStimulator implements oneM2MTester.oneM2MOperation {
         public void onSuccess(int statusCode, Header[] headers, HttpRequester.NetworkResponseListenerXML networkResponseListenerXML, String responseBody) {
             Log.i("testing", "XML onSuccess");
             Log.i("testing", ""+ statusCode);
-
         }
 
 
@@ -51,7 +56,6 @@ public class oneM2MStimulator implements oneM2MTester.oneM2MOperation {
         public void onFail(int statusCode, Header[] headers, HttpRequester.NetworkResponseListenerXML networkResponseListenerXML, String responseBody) {
             Log.i("testing", "XML onFail");
             Log.i("testing", ""+ statusCode);
-
         }
     };
 
@@ -63,7 +67,6 @@ public class oneM2MStimulator implements oneM2MTester.oneM2MOperation {
 
             if(jsonObject != null) {
                 Log.i("testing", jsonObject.toString());
-
             }
 
         }
@@ -77,7 +80,6 @@ public class oneM2MStimulator implements oneM2MTester.oneM2MOperation {
 
             } else if(responseString != null) {
                 Log.i("testing", responseString);
-
             }
         }
     };
