@@ -53,7 +53,6 @@ public class oneM2MStimulator implements oneM2MTester.oneM2MOperation {
             Log.i("testing", ""+ statusCode);
         }
 
-
         @Override
         public void onFail(int statusCode, Header[] headers, HttpRequester.NetworkResponseListenerXML networkResponseListenerXML, String responseBody) {
             Log.i("testing", "XML onFail");
@@ -75,7 +74,7 @@ public class oneM2MStimulator implements oneM2MTester.oneM2MOperation {
 
         @Override
         public void onFail(int statusCode, Header[] headers, JSONObject jsonObject) {
-            Log.i("testing", "JSON onFail");
+            Log.i("testing", "JSON onFail1");
 
             if(jsonObject != null) {
                 Log.i("testing", PrettyFormatter.getPrettyJSON(jsonObject));
@@ -85,7 +84,7 @@ public class oneM2MStimulator implements oneM2MTester.oneM2MOperation {
 
         @Override
         public void onFail(int statusCode, Header[] headers, String responseString) {
-            Log.i("testing", "JSON onFail");
+            Log.i("testing", "JSON onFail2");
 
             if(responseString != null) {
                 JSONObject jsonObject = null;

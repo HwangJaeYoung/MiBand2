@@ -33,7 +33,7 @@ public class ContentInstance_Retrieve implements ContentInstance_Root {
 
         this.contentInstanceRetrieveHeaderList = new HashMap<String, String>();
 
-        this.contentInstanceRetrieveHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
+        this.contentInstanceRetrieveHeaderList.put(KEY_HEADER_ACCEPT, "application/json");
         this.contentInstanceRetrieveHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
         this.contentInstanceRetrieveHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
 

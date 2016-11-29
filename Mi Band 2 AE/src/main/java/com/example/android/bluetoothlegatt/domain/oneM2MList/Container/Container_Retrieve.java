@@ -33,7 +33,7 @@ public class Container_Retrieve implements Container_Root {
 
         this.containerRetrieveHeaderList = new HashMap<String, String>();
 
-        this.containerRetrieveHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
+        this.containerRetrieveHeaderList.put(KEY_HEADER_ACCEPT, "application/json");
         this.containerRetrieveHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
         this.containerRetrieveHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
 

@@ -319,7 +319,7 @@ public class DeviceControlActivity extends Activity {
 
         @Override
         public void onFail(int statusCode, Header[] headers, JSONObject jsonObject) {
-            Log.i("testing", "JSON onFail");
+            Log.i("testing", "JSON onFail1");
 
             if(jsonObject != null) {
                 Log.i("testing", PrettyFormatter.getPrettyJSON(jsonObject));
@@ -329,7 +329,7 @@ public class DeviceControlActivity extends Activity {
 
         @Override
         public void onFail(int statusCode, Header[] headers, String responseString) {
-            Log.i("testing", "JSON onFail");
+            Log.i("testing", "JSON onFail2");
 
             if(responseString != null) {
                 JSONObject jsonObject = null;

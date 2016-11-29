@@ -33,7 +33,6 @@ public class AE {
 
         while (iterator.hasNext()) {
             String key = iterator.next();
-            Log.i("testing", key);
             headerLists.add(new MainHeaderItem(key, headerItemList.get(key)));
         }
 

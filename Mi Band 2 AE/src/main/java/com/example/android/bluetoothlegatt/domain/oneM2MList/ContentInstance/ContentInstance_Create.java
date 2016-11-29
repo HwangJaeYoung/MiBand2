@@ -38,7 +38,7 @@ public class ContentInstance_Create implements ContentInstance_Root {
 
         this.contentInstanceCreateHeaderList = new HashMap<String, String>();
 
-        this.contentInstanceCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
+        this.contentInstanceCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/json");
         this.contentInstanceCreateHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
         this.contentInstanceCreateHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
         this.contentInstanceCreateHeaderList.put(KEY_HEADER_CONTENT_TYPE, "application/vnd.onem2m-res+xml; ty=4");
@@ -49,9 +49,8 @@ public class ContentInstance_Create implements ContentInstance_Root {
                 "</m2m:cin>";
 
         jsonBody = "{\n" +
-                "    \"m2m:ae\": {\n" +
-                "        \"rn\": \"andtesting33\",\n" +
-                "        \"api\": \"0.2.481.2.0001.001.000111\"\n" +
+                "    \"m2m:cin\": {\n" +
+                "        \"con\": \"" + DeviceControlActivity.walkingStepValue + "\"\n" +
                 "    }\n" +
                 "}";
 

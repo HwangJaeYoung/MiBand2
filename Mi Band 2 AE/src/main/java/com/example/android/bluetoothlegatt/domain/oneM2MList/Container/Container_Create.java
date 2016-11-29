@@ -39,7 +39,7 @@ public class Container_Create implements Container_Root {
 
         this.containerCreateHeaderList = new HashMap<String, String>();
 
-        this.containerCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
+        this.containerCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/json");
         this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
         this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
         this.containerCreateHeaderList.put(KEY_HEADER_CONTENT_TYPE, "application/vnd.onem2m-res+xml; ty=3");
@@ -50,9 +50,8 @@ public class Container_Create implements Container_Root {
                 "</m2m:cnt>";
 
         jsonBody = "{\n" +
-                "    \"m2m:ae\": {\n" +
-                "        \"rn\": \"andtesting33\",\n" +
-                "        \"api\": \"0.2.481.2.0001.001.000111\"\n" +
+                "    \"m2m:cnt\": {\n" +
+                "        \"rn\": \"" + URLInfomation.containerName + "\",\n" +
                 "    }\n" +
                 "}";
 

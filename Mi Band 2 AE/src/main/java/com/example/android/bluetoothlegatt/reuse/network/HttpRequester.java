@@ -29,7 +29,6 @@ public class HttpRequester {
 
     public static void requestJSON(Context context, RequestParams params, JsonHttpResponseHandler responseHandler, RequestPrimitive requestPrimitive, int operation) {
 
-
         getClient().setMaxRetriesAndTimeout(1000, 25000);
 
         if (operation == oneM2MRequest.OPERATION_POST) {

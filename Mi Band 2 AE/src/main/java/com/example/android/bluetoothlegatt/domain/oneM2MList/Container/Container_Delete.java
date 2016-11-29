@@ -34,7 +34,7 @@ public class Container_Delete implements Container_Root {
 
         this.containerDeleteHeaderList = new HashMap<String, String>();
 
-        this.containerDeleteHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
+        this.containerDeleteHeaderList.put(KEY_HEADER_ACCEPT, "application/json");
         this.containerDeleteHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
         this.containerDeleteHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
 
