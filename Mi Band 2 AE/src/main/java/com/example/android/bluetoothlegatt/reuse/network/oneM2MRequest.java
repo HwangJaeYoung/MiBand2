@@ -22,10 +22,14 @@ public class oneM2MRequest {
 	public void JSON(Context context, final HttpRequester.NetworkResponseListenerJSON aNetworkListener, String method, RequestPrimitive requestPrimitive) throws JSONException {
 		RequestParams requestParams = new RequestParams( );
 
-		if(method.equals("POST") || method.equals("PUT"))
-			HttpRequester.postJSON(context, requestParams, new JsonResponseHandler(aNetworkListener), requestPrimitive);
-		else if(method.equals("GET") || method.equals("DELETE"))
-			HttpRequester.getJSON(context, requestParams, new JsonResponseHandler(aNetworkListener), requestPrimitive);
+		if(method.equals("POST"))
+			HttpRequester.requestJSON(context, requestParams, new JsonResponseHandler(aNetworkListener), requestPrimitive, OPERATION_POST);
+		else if(method.equals("PUT"))
+			HttpRequester.requestJSON(context, requestParams, new JsonResponseHandler(aNetworkListener), requestPrimitive, OPERATION_PUT);
+		else if(method.equals("GET"))
+			HttpRequester.requestJSON(context, requestParams, new JsonResponseHandler(aNetworkListener), requestPrimitive, OPERATION_GET);
+		else if(method.equals("DELETE"))
+			HttpRequester.requestJSON(context, requestParams, new JsonResponseHandler(aNetworkListener), requestPrimitive, OPERATION_DELETE);
 	}
 
 	public void XML(Context context, final HttpRequester.NetworkResponseListenerXML aNetworkListener, String method, RequestPrimitive requestPrimitive) {

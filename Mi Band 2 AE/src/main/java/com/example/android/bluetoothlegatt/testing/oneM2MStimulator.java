@@ -6,11 +6,13 @@ import android.util.Log;
 import com.example.android.bluetoothlegatt.domain.oneM2MList.AE.AE_Create;
 import com.example.android.bluetoothlegatt.domain.oneM2MList.Container.Container_Create;
 import com.example.android.bluetoothlegatt.domain.oneM2MList.ContentInstance.ContentInstance_Create;
+import com.example.android.bluetoothlegatt.etc.PrettyFormatter;
 import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
 import com.example.android.bluetoothlegatt.reuse.network.oneM2M.AE;
 import com.example.android.bluetoothlegatt.reuse.network.oneM2M.Container;
 import com.example.android.bluetoothlegatt.reuse.network.oneM2M.ContentInstance;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
@@ -66,20 +68,41 @@ public class oneM2MStimulator implements oneM2MTester.oneM2MOperation {
             Log.i("testing", "JSON onSuccess");
 
             if(jsonObject != null) {
-                Log.i("testing", jsonObject.toString());
+                Log.i("testing", PrettyFormatter.getPrettyJSON(jsonObject));
+                Log.i("testing", ""+ statusCode);
             }
-
         }
 
         @Override
-        public void onFail(int statusCode, Header[] headers, JSONObject jsonObject, String responseString) {
+        public void onFail(int statusCode, Header[] headers, JSONObject jsonObject) {
             Log.i("testing", "JSON onFail");
 
             if(jsonObject != null) {
-                Log.i("testing", jsonObject.toString());
+                Log.i("testing", PrettyFormatter.getPrettyJSON(jsonObject));
+                Log.i("testing", ""+ statusCode);
+            }
+        }
 
-            } else if(responseString != null) {
-                Log.i("testing", responseString);
+        @Override
+        public void onFail(int statusCode, Header[] headers, String responseString) {
+            Log.i("testing", "JSON onFail");
+
+            if(responseString != null) {
+                JSONObject jsonObject = null;
+
+                try {
+                    jsonObject = new JSONObject(responseString);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                if(jsonObject != null) {
+                    Log.i("testing", PrettyFormatter.getPrettyJSON(jsonObject));
+                    Log.i("testing", ""+ statusCode);
+                } else {
+                    Log.i("testing", PrettyFormatter.getPrettyXML(responseString));
+                    Log.i("testing", ""+ statusCode);
+                }
             }
         }
     };

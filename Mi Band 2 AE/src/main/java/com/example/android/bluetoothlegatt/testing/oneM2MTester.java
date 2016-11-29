@@ -71,8 +71,26 @@ public class oneM2MTester {
 
             oneM2MStimulator oneM2MStimulator = new oneM2MStimulator(context);
 
+            Timer timer = new Timer();
+
+
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    // Your database code here
+                }
+            }, 2*60*1000);
+
             switch(parsedTestcase) {
+
                 case oneM2MTestcase.TC_AE_REG_BV_001 :
+                    try {
+                        Log.i("testing",  "start");
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Log.i("testing",  "end");
                     oneM2MStimulator.TC_AE_REG_BV_001();
                   break;
 

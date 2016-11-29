@@ -23,16 +23,12 @@ public class JsonResponseHandler extends JsonHttpResponseHandler {
 
     // Returns when request failed
     @Override
+    public void onFailure(int statusCode, Header[] headers,  Throwable throwable, JSONObject response) {
+        this.networkResponseListener.onFail(statusCode, headers, response);
+    }
+
+    @Override
     public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-
-        JSONObject jsonObject = null;
-
-        try {
-            jsonObject = new JSONObject(responseString);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        this.networkResponseListener.onFail(statusCode, headers, jsonObject, responseString);
+        this.networkResponseListener.onFail(statusCode, headers, responseString);
     }
 }

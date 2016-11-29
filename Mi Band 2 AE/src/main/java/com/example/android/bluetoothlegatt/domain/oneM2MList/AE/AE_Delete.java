@@ -33,7 +33,7 @@ public class AE_Delete implements AE_Root {
 
         this.aeRetrieveHeaderList = new HashMap<String, String>();
 
-        this.aeRetrieveHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
+        this.aeRetrieveHeaderList.put(KEY_HEADER_ACCEPT, "application/json");
         this.aeRetrieveHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
         this.aeRetrieveHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
 

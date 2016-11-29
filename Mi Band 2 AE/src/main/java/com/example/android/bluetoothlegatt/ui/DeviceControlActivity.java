@@ -37,9 +37,11 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.android.bluetoothlegatt.R;
+import com.example.android.bluetoothlegatt.etc.PrettyFormatter;
 import com.example.android.bluetoothlegatt.reuse.event.ClickEvent;
 import com.example.android.bluetoothlegatt.reuse.network.HttpRequester;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.Inet4Address;
@@ -294,15 +296,12 @@ public class DeviceControlActivity extends Activity {
         public void onSuccess(int statusCode, Header[] headers, HttpRequester.NetworkResponseListenerXML networkResponseListenerXML, String responseBody) {
             Log.i("testing", "XML onSuccess");
             Log.i("testing", ""+ statusCode);
-
         }
-
 
         @Override
         public void onFail(int statusCode, Header[] headers, HttpRequester.NetworkResponseListenerXML networkResponseListenerXML, String responseBody) {
             Log.i("testing", "XML onFail");
             Log.i("testing", ""+ statusCode);
-
         }
     };
 
@@ -313,22 +312,41 @@ public class DeviceControlActivity extends Activity {
             Log.i("testing", "JSON onSuccess");
 
             if(jsonObject != null) {
-                Log.i("testing", jsonObject.toString());
-
+                Log.i("testing", PrettyFormatter.getPrettyJSON(jsonObject));
+                Log.i("testing", ""+ statusCode);
             }
-
         }
 
         @Override
-        public void onFail(int statusCode, Header[] headers, JSONObject jsonObject, String responseString) {
+        public void onFail(int statusCode, Header[] headers, JSONObject jsonObject) {
             Log.i("testing", "JSON onFail");
 
             if(jsonObject != null) {
-                Log.i("testing", jsonObject.toString());
+                Log.i("testing", PrettyFormatter.getPrettyJSON(jsonObject));
+                Log.i("testing", ""+ statusCode);
+            }
+        }
 
-            } else if(responseString != null) {
-                Log.i("testing", responseString);
+        @Override
+        public void onFail(int statusCode, Header[] headers, String responseString) {
+            Log.i("testing", "JSON onFail");
 
+            if(responseString != null) {
+                JSONObject jsonObject = null;
+
+                try {
+                    jsonObject = new JSONObject(responseString);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                if(jsonObject != null) {
+                    Log.i("testing", PrettyFormatter.getPrettyJSON(jsonObject));
+                    Log.i("testing", ""+ statusCode);
+                } else {
+                    Log.i("testing", PrettyFormatter.getPrettyXML(responseString));
+                    Log.i("testing", ""+ statusCode);
+                }
             }
         }
     };
@@ -443,6 +461,7 @@ public class DeviceControlActivity extends Activity {
     // In this sample, we populate the data structure that is bound to the ExpandableListView
     // on the UI.
     private void displayGattServices(List<BluetoothGattService> gattServices) {
+
         if (gattServices == null)
             return;
 
@@ -468,8 +487,7 @@ public class DeviceControlActivity extends Activity {
 
             ArrayList<HashMap<String, String>> gattCharacteristicGroupData = new ArrayList<HashMap<String, String>>();
 
-            List<BluetoothGattCharacteristic> gattCharacteristics =
-                    gattService.getCharacteristics();
+            List<BluetoothGattCharacteristic> gattCharacteristics = gattService.getCharacteristics();
 
             ArrayList<BluetoothGattCharacteristic> charas = new ArrayList<BluetoothGattCharacteristic>();
 

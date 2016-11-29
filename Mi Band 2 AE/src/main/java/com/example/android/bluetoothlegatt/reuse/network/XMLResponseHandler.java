@@ -45,7 +45,6 @@ public class XMLResponseHandler extends SaxAsyncHttpResponseHandler<HttpRequeste
 
         responseBody = convertStreamToString(inputStream);
         Log.i("testing", responseBody);
-        Log.i("testing", "Execute");
 
         return null;
     }

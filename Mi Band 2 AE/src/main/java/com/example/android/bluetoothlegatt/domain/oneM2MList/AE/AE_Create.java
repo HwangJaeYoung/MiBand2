@@ -38,7 +38,7 @@ public class AE_Create implements AE_Root {
 
         this.aeCreateHeaderList = new HashMap<String, String>();
 
-        this.aeCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
+        this.aeCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/json");
         this.aeCreateHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
         this.aeCreateHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "C");
         this.aeCreateHeaderList.put(KEY_HEADER_CONTENT_TYPE, "application/vnd.onem2m-res+xml; ty=2");
@@ -51,7 +51,7 @@ public class AE_Create implements AE_Root {
 
         jsonBody = "{\n" +
                 "    \"m2m:ae\": {\n" +
-                "        \"rn\": \"andtesting33\",\n" +
+                "        \"rn\": \"" + URLInfomation.AEName + "\"\n" +
                 "        \"api\": \"0.2.481.2.0001.001.000111\"\n" +
                 "    }\n" +
                 "}";

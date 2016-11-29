@@ -27,20 +27,12 @@ public class HttpRequester {
     public static AsyncHttpClient syncHttpClient= new SyncHttpClient();
     private static AsyncHttpClient client = new AsyncHttpClient();
 
-    // JSON Function
-    public static void postJSON(Context context, RequestParams params, JsonHttpResponseHandler responseHandler, RequestPrimitive requestPrimitive) {
-        requestJSON(context, params, responseHandler, requestPrimitive, true);
-    }
+    public static void requestJSON(Context context, RequestParams params, JsonHttpResponseHandler responseHandler, RequestPrimitive requestPrimitive, int operation) {
 
-    public static void getJSON(Context context, RequestParams params, JsonHttpResponseHandler responseHandler, RequestPrimitive requestPrimitive) {
-        requestJSON(context, params, responseHandler, requestPrimitive, false);
-    }
 
-    public static void requestJSON(Context context, RequestParams params, JsonHttpResponseHandler responseHandler, RequestPrimitive requestPrimitive, boolean anIsPost) {
+        getClient().setMaxRetriesAndTimeout(1000, 25000);
 
-        getClient().setMaxRetriesAndTimeout(1000, 20000);
-
-        if (anIsPost) {
+        if (operation == oneM2MRequest.OPERATION_POST) {
             StringEntity oneM2MBody = null;
 
             try {
@@ -50,13 +42,27 @@ public class HttpRequester {
             }
 
             getClient().post(context, requestPrimitive.getTo(), requestPrimitive.getHeaderList(), oneM2MBody, requestPrimitive.getContent_Type(), responseHandler);
-        } else
-            getClient().get(context, requestPrimitive.getTo(), requestPrimitive.getHeaderList() , params, responseHandler);
+        } else if (operation == oneM2MRequest.OPERATION_GET) {
+            getClient().get(context, requestPrimitive.getTo(), requestPrimitive.getHeaderList(), params, responseHandler);
+        } else if(operation == oneM2MRequest.OPERATION_DELETE) {
+            getClient().delete(context, requestPrimitive.getTo(), requestPrimitive.getHeaderList(), responseHandler);
+        } else if(operation == oneM2MRequest.OPERATION_PUT) {
+
+            StringEntity oneM2MBody = null;
+
+            try {
+                oneM2MBody = new StringEntity(requestPrimitive.getOneM2MBody());
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            getClient().put(context, requestPrimitive.getTo(), requestPrimitive.getHeaderList(), oneM2MBody, requestPrimitive.getContent_Type(), responseHandler);
+        }
     }
 
     public static void requestXML(Context context, RequestParams params, XMLResponseHandler responseHandler, RequestPrimitive requestPrimitive, int operation) {
 
-        getClient().setMaxRetriesAndTimeout(1000, 20000);
+        getClient().setMaxRetriesAndTimeout(1000, 25000);
 
         if (operation == oneM2MRequest.OPERATION_POST) {
             StringEntity oneM2MBody = null;
@@ -100,7 +106,8 @@ public class HttpRequester {
     // 처리를 위해 공통적인 규약을 준것이다.
     public interface NetworkResponseListenerJSON {
         void onSuccess(int statusCode, Header[] headers, JSONObject jsonObject);
-        void onFail(int statusCode, Header[] headers, JSONObject jsonObject, String responseString);
+        void onFail(int statusCode, Header[] headers, JSONObject jsonObject);
+        void onFail(int statusCode, Header[] headers, String responseString);
     }
 
     public static abstract class NetworkResponseListenerXML extends DefaultHandler {

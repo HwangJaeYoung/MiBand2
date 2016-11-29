@@ -17,6 +17,7 @@ apply plugin: 'android'
 
 dependencies {
     // Add the support lib that is appropriate for SDK 18
+    compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.android.support:support-v13:19.1.+'
     compile files('libs/android-async-http-1.4.9.jar')
     androidTestCompile files('libs/junit-4.12.jar')
