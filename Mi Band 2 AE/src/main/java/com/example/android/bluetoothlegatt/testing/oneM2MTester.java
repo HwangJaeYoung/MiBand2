@@ -77,7 +77,7 @@ public class oneM2MTester {
                   break;
 
                 case oneM2MTestcase.TC_AE_DMR_BV_001 :
-                    oneM2MStimulator.TC_AE_REG_BV_001();
+                    oneM2MStimulator.TC_AE_DMR_BV_001();
                     break;
 
                 case oneM2MTestcase.TC_AE_DMR_BV_003 :
