@@ -2,6 +2,7 @@ package com.example.android.bluetoothlegatt.reuse.network;
 
 import android.util.Log;
 
+import com.example.android.bluetoothlegatt.etc.PrettyFormatter;
 import com.loopj.android.http.SaxAsyncHttpResponseHandler;
 
 import java.io.BufferedReader;
@@ -44,7 +45,7 @@ public class XMLResponseHandler extends SaxAsyncHttpResponseHandler<HttpRequeste
         }
 
         responseBody = convertStreamToString(inputStream);
-        Log.i("testing", responseBody);
+        Log.i("testing", PrettyFormatter.getPrettyXML(responseBody));
 
         return null;
     }

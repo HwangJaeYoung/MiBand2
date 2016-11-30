@@ -38,7 +38,7 @@ public class ContentInstance_Create implements ContentInstance_Root {
 
         this.contentInstanceCreateHeaderList = new HashMap<String, String>();
 
-        this.contentInstanceCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/json");
+        this.contentInstanceCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
         this.contentInstanceCreateHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
         this.contentInstanceCreateHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
         this.contentInstanceCreateHeaderList.put(KEY_HEADER_CONTENT_TYPE, "application/vnd.onem2m-res+xml; ty=4");
