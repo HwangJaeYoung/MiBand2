@@ -36,7 +36,7 @@ public class Container_Delete implements Container_Root {
 
         this.containerDeleteHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
         this.containerDeleteHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
-        this.containerDeleteHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
+        this.containerDeleteHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Ctest");
 
         url = URLInfomation.serverURL + "/" + URLInfomation.AEName + "/" + URLInfomation.containerName;
     }

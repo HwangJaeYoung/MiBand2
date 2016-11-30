@@ -41,7 +41,7 @@ public class Container_Create implements Container_Root {
 
         this.containerCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
         this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
-        this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
+        this.containerCreateHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Ctest");
         this.containerCreateHeaderList.put(KEY_HEADER_CONTENT_TYPE, "application/vnd.onem2m-res+xml; ty=3");
 
 

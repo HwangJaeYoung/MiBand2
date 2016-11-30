@@ -86,7 +86,7 @@ public class oneM2MTester {
                             oneM2MStimulator oneM2MStimulator = new oneM2MStimulator(context);
                             oneM2MStimulator.TC_AE_REG_BV_001();
                         }
-                    }, 10000);
+                    }, 5000);
 
                     Log.i("testing",  "end");
                   break;

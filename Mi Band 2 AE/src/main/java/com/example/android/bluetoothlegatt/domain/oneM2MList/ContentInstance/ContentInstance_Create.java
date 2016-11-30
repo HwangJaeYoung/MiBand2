@@ -40,7 +40,7 @@ public class ContentInstance_Create implements ContentInstance_Root {
 
         this.contentInstanceCreateHeaderList.put(KEY_HEADER_ACCEPT, "application/xml");
         this.contentInstanceCreateHeaderList.put(KEY_HEADER_X_M2M_RI, "12345");
-        this.contentInstanceCreateHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Origin");
+        this.contentInstanceCreateHeaderList.put(KEY_HEADER_X_M2M_ORIGIN, "Ctest");
         this.contentInstanceCreateHeaderList.put(KEY_HEADER_CONTENT_TYPE, "application/vnd.onem2m-res+xml; ty=4");
 
         xmlBody = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
@@ -54,7 +54,7 @@ public class ContentInstance_Create implements ContentInstance_Root {
                 "    }\n" +
                 "}";
 
-        url = URLInfomation.serverURL + "/" + URLInfomation.AEName + "/" + URLInfomation.containerName;
+        url = URLInfomation.serverURL + "/" +  URLInfomation.AEName + "/" + URLInfomation.containerName;
     }
 
     @Override
